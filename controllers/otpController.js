@@ -1,4 +1,5 @@
 const sendOtp = require("../utils/sendOtp");
+const logger = require("../utils/logger");
 
 const otpStore = {};
 
@@ -11,7 +12,6 @@ const sendMobileOtp = async (req, res) => {
 
         const { mobile } = req.body;
 
-        // Validate Mobile Number
         if (!mobile) {
             return res.status(400).json({
                 success: false,
@@ -30,9 +30,10 @@ const sendMobileOtp = async (req, res) => {
         // Send OTP using API
         const apiResponse = await sendOtp(mobile, otp);
 
+        logger.info("the api response is" , apiResponse);
+
         if (!apiResponse) { return res.status(500).json({ success: false, message: "Failed to send OTP" }); }
-        
-        console.log("API Response:", apiResponse);
+    
 
         return res.status(200).json({
             success: true,
