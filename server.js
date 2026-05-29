@@ -37,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/auth', authRoutes);
-app.use("/api/otp", otpRoutes);
+app.use("/api/mobile-otp", otpRoutes);
 
 
 const PORT = process.env.PORT || 5000;

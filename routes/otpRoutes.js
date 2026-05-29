@@ -9,8 +9,8 @@ const{
 
 const router = express.Router();
 
-router.post("/send-otp", sendMobileOtp);
+router.post("/send", sendMobileOtp);
 
-router.post("/verify-otp", verifyOtp);
+router.post("/verify", verifyOtp);
 
 module.exports = router;

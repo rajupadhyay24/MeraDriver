@@ -21,9 +21,9 @@ router.post('/register', register);
 
 router.post('/login', login);
 
-router.post('/send-otp', sendOtp);
+router.post('/send-mail-otp', sendOtp);
 
-router.post('/verify-otp', verifyOtp);
+router.post('/verify-mail-otp', verifyOtp);
 
 router.get('/profile', authMiddleware, profile);
 

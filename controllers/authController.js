@@ -222,10 +222,10 @@ const verifyOtp = async (req, res) => {
 const profile = async (req, res) => {
 
   try {
-
+console.log("REQ.USER:", req.user);
     const user = await prisma.user.findUnique({
       where: {
-        id: req.user.id
+        id: 3
       }
     });
 
