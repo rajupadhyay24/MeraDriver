@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 
 const sendOtp = async (mobile, otp) => {
@@ -41,6 +40,7 @@ const sendOtp = async (mobile, otp) => {
         return null;
     }
 };
+
 
 module.exports = sendOtp;
 
