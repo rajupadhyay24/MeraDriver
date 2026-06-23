@@ -3,9 +3,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+/* ================= USER ================= */
 
 model User {
   id Int @id @default(autoincrement())
@@ -28,6 +30,8 @@ model User {
 
   createdAt DateTime @default(now())
 }
+
+/* ================= CATEGORY ================= */
 
 model Category {
   category_id BigInt @id @default(autoincrement())
@@ -53,10 +57,7 @@ model Category {
   @@map("categories")
 }
 
-enum CategoryStatus {
-  active
-  inactive
-}
+/* ================= SUB CATEGORY ================= */
 
 model SubCategory {
   sub_category_id BigInt @id @default(autoincrement())
@@ -85,6 +86,8 @@ model SubCategory {
 
   @@map("sub_categories")
 }
+
+/* ================= PRODUCT CARD ================= */
 
 model ProductCard {
   product_card_id BigInt @id @default(autoincrement())
@@ -136,6 +139,8 @@ model ProductCard {
   @@map("product_cards")
 }
 
+/* ================= PRODUCT DETAIL ================= */
+
 model ProductDetail {
   detail_id BigInt @id @default(autoincrement())
 
@@ -180,6 +185,13 @@ model ProductDetail {
   deleted_at DateTime?
 
   @@map("product_details")
+}
+
+/* ================= ENUMS ================= */
+
+enum CategoryStatus {
+  active
+  inactive
 }
 
 enum Status {
