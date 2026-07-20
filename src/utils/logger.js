@@ -1,44 +1,34 @@
-// logger.info("Information message");
-
-// logger.error("Something failed");
-
-// logger.warn("Warning message");
-
-// logger.debug("Debugging");
-
-
 const winston = require("winston");
 
-const logger = winston.createLogger({
+const transports = [
+    new winston.transports.Console({
+        format: winston.format.simple(),
+    }),
+];
 
-    level: "info",
-
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json()
-    ),
-
-    transports: [
-
+// Only write to files in non-production environments
+if (process.env.NODE_ENV !== "production") {
+    transports.push(
         new winston.transports.File({
             filename: "logs/app.log",
-            level: "error"
-        }),
-
-        new winston.transports.File({
-            filename: "logs/combined.log"
+            level: "error",
         })
-    ]
-});
+    );
 
-if (process.env.NODE_ENV !== "production") {
-
-    logger.add(
-        new winston.transports.Console({
-            format: winston.format.simple()
+    transports.push(
+        new winston.transports.File({
+            filename: "logs/combined.log",
         })
     );
 }
 
-module.exports = logger;
+const logger = winston.createLogger({
+    level: "info",
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports,
+});
 
+module.exports = logger;

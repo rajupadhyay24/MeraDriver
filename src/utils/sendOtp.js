@@ -26,7 +26,14 @@ const sendOtp = async (mobile, otp) => {
         console.log(
             "FULL RESPONSE:",
             JSON.stringify(response.data, null, 2)
-        );
+            );
+
+        console.log("SMS_API_KEY exists:", !!process.env.SMS_API_KEY);
+console.log("SMS_SENDER:", process.env.SMS_SENDER);
+console.log(
+  "SMS_API_KEY prefix:",
+  process.env.SMS_API_KEY?.substring(0, 5)
+            );
 
         return response.data;
 
